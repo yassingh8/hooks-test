@@ -1,7 +1,7 @@
 .App {
-  background-color: #008f68;
-  height: 100vh;
-  color: #FAE042;
+  /* background-color: #008f68; */
+  height: device-height;
+  /* color: #FAE042; */
 }
 
 .App img {

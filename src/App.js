@@ -1,19 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useForm } from "./useForm";
 import ClassBasedComponent from './components/Class-Based-Component';
+import FunctionalComponent from './components/FunctionalComponent';
 // import FunctionBasedComponent from './components/FunctionBasedComponent';
-import Logo from './assets/alligator-logo2.svg';
 import './App.css';
+import { Hello } from './components/Hello';
+import { Button } from 'reactstrap';
 
-class App extends React.Component {
-  render() {
+const App = () => {
+
+  const [values, handleChange] = useForm({
+    email: ""
+  });
+
+  const [showHello, setShowHello] = useState(true);
+  const [showUsers, setShowUsers] = useState(false);
+
+  useEffect( () => {
+    console.log("imput changed");
+
+    // return () => {
+    //     console.log("input cleanup");
+    // };
+  }, [values.email]);
+
     return (
       <div className="App">
-        <img src={ Logo } alt="Alligator.io Logo" width="200" />
-        <h1>useEffect Hook</h1>
-        <ClassBasedComponent />
+        {/* <ClassBasedComponent /> */}
+        <Button onClick={() => setShowHello(!showHello)}>Show Hello</Button>
+        { showHello && <Hello/>}<br/>
+        <input name="email" placeholder= "email.." value={values.email} onChange={handleChange} /><br/><br/>
+        <Button onClick={() => setShowUsers(!showUsers)}>Show Users List</Button><br/>
+        { showUsers && <FunctionalComponent/>}
       </div>
     );
   }
-}
 
 export default App;

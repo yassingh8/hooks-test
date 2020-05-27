@@ -28,17 +28,16 @@ export default class ClassBasedComponent extends React.Component {
     const { users } = this.state
     return (
       <Container>
+        <Button onClick={ this.handleClick }>
+          { this.state.showDetails ? "Close Additional Info" : "More Info"  }
+        </Button>
+        <br/><br/>
         {
           users.map((user) => (
             <ul key={ user.id }>
               <li>
                 <strong>{ user.name }</strong>
                 <div>
-                  <Button
-                    onClick={ this.handleClick }
-                  >
-                    { this.state.showDetails ? "Close Additional Info" : "More Info"  }
-                </Button>
                  { this.state.showDetails &&
                    <Container className="additional-info">
                      <Row>
